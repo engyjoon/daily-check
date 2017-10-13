@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 
 <style type="text/css">
-	.layer {position:absolute; display:table; top:0; left:0; width:100%; height:95%;}
+	.layer {position:absolute; display:table; top:0; left:0; width:100%; height:90%;}
 	.layer .layer_inner {display:table-cell; text-align:center; vertical-align:middle}
 	.layer .content {display:inline-block; background:#ffffff;}
 	
@@ -34,7 +34,7 @@
 			<div class="content">				
 				<div class="title"><img src="image/title_v1.png" style="width:450px;height:auto;"></div>
 				<div class="input">
-					<form action="member.do" method="post">
+					<form action="member.do" method="post" autocomplete="off">
 						<input type="hidden" name="action" value="checkUser">
 						<div class="form-group">
 							<label for="id">아이디</label>

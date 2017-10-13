@@ -46,4 +46,12 @@ public class MemberService {
 		
 		return result;
 	}
+	
+	public int insertMember(MemberVO member) {
+		return dao.insertMember(member);
+	}
+	
+	public String getUserId(String userName) {
+		return dao.getGroupId(userName);
+	}
 }

@@ -12,12 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.kt.ipmc.check.common.HttpUtil;
-import com.kt.ipmc.check.service.MemberService;
-
-public class IndexFilter implements Filter {
-	
-	MemberService service = MemberService.getInstance();
+public class LoginFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig config) throws ServletException {
@@ -32,18 +27,17 @@ public class IndexFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		
+		String path = req.getServletPath();
+		System.out.println("LoginFilter.doFilter - path : " + path);
+
 		HttpSession session = req.getSession();
-		
-		if (service.existAdminUser().equals("N")) {
-			System.out.println("IndexFilter.doFilter - redirect : home.do?action=addAdmin");
-			res.sendRedirect("member.do?action=addAdmin");
-		} else if (session.getAttribute("userid") != null) {
-			//System.out.println("IndexFilter.doFilter - redirect : check.do");
-			//res.sendRedirect("check.do");
-			chain.doFilter(request, response);
+		if (session.isNew() || session.getAttribute("userid") == null) {
+			System.out.println("LoginFilter.doFilter - index.jsp");
+			res.sendRedirect(req.getContextPath()+"/index.jsp");
 		} else {
 			chain.doFilter(request, response);
 		}
+		
 	}
 	
 	@Override

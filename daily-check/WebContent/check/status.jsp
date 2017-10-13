@@ -7,6 +7,6 @@
 <title>Sky Serve</title>
 </head>
 <body>
-status
+	status
 </body>
 </html>

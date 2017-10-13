@@ -65,4 +65,44 @@ public class MemberDAO {
 		
 		return result;
 	}
+	
+	public int insertMember(MemberVO member) {
+		int result = 0;
+		
+		try {
+			conn = manager.getConnection();
+			pstmt = conn.prepareStatement("insert into tb_member(user_id, user_name, user_passwd, group_id) values(?,?,?,?)");
+			pstmt.setString(1, member.getUserId());
+			pstmt.setString(2, member.getUserName());
+			pstmt.setString(3, member.getUserPassword());
+			pstmt.setString(4, member.getGroupId());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			manager.close(conn, pstmt);
+		}
+		
+		return result;
+	}
+	
+	public String getGroupId(String userName) {
+		String result = null;
+		
+		try {
+			conn = manager.getConnection();			               
+			pstmt = conn.prepareStatement("select group_id from tb_member_group where group_name = ?");
+			pstmt.setString(1, userName);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = rs.getString(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			manager.close(conn, pstmt, rs);
+		}
+		
+		return result;
+	}
 }

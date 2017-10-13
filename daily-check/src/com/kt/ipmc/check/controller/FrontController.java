@@ -19,7 +19,9 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		charset = config.getInitParameter("charset");
 		list = new HashMap<String, Controller>();
+		list.put("/home.do", new HomeController());
 		list.put("/member.do", new MemberController());
+		list.put("/check.do", new CheckController());
 	}
 	
 	@Override
