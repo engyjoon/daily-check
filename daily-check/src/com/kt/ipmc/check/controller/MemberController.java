@@ -27,26 +27,28 @@ public class MemberController implements Controller {
 		member.setUserPassword(passwd);
 		member.setUserName(name);
 		
-		if (action.equals("checkUser")) {
+		HttpSession session = null;
+		
+		if (action.equals("addAdmin")) {
+			if (service.existAdminUser().equals("N")) {
+				member.setGroupId(service.getUserId("ADMIN"));
+				service.insertMember(member);
+			} 
+			response.sendRedirect(request.getContextPath());
+		} else if (action.equals("login")) {
 			//System.out.println("MemberController.execute - result : "+service.checkUser(member));
 			if (service.checkLogin(member).equals("EXIST_NOK") || service.checkLogin(member).equals("MATCH_NOK")) {
-				request.setAttribute("result", "LOGIN_NOK");
-				HttpUtil.forward(request, response, "/index.jsp");
+				response.sendRedirect(request.getContextPath());
 			} else if (service.checkLogin(member).equals("MATCH_OK")) {
-				HttpSession session = request.getSession();
+				session = request.getSession();
 				session.setAttribute("userid", member.getUserId());
-				request.setAttribute("result", "LOGIN_OK");
 				response.sendRedirect("check.do");
 			}
-		} else if (action.equals("addAdmin")) {
-			if (request.getMethod().equals("GET")) {
-				HttpUtil.forward(request, response, "/add_admin.jsp");
-			} else if (request.getMethod().equals("POST")) {
-				member.setGroupId(service.getUserId("ADMIN"));
-				//System.out.println("MemberController.excute : "+member.getGroupId());
-				service.insertMember(member);
-				request.setAttribute("result", "ADD_ADMIN_OK");
-				HttpUtil.forward(request, response, "/index.jsp");
+		} else if (action.equals("logout")) {
+			session = request.getSession();
+			if (session != null) {
+				session.invalidate();
+				response.sendRedirect(request.getContextPath());
 			}
 		}
 		

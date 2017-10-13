@@ -34,13 +34,15 @@ public class IndexFilter implements Filter {
 		
 		HttpSession session = req.getSession();
 		
+		String path = req.getServletPath();
+		System.out.println("IndexFilter.doFilter - path : " + path);
+		
 		if (service.existAdminUser().equals("N")) {
-			System.out.println("IndexFilter.doFilter - redirect : home.do?action=addAdmin");
-			res.sendRedirect("member.do?action=addAdmin");
+			System.out.println("IndexFilter.doFilter - redirect : first.do");
+			res.sendRedirect("first.do");
 		} else if (session.getAttribute("userid") != null) {
-			//System.out.println("IndexFilter.doFilter - redirect : check.do");
-			//res.sendRedirect("check.do");
-			chain.doFilter(request, response);
+			System.out.println("IndexFilter.doFilter - redirect : check.do");
+			res.sendRedirect("check.do");
 		} else {
 			chain.doFilter(request, response);
 		}

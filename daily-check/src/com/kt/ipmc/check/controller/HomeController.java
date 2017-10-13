@@ -13,11 +13,6 @@ public class HomeController implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String action = request.getParameter("action");
-		if (action.equals("addAdmin")) {
-			HttpUtil.forward(request, response, "/add_admin.jsp");
-		} else {
-			HttpUtil.forward(request, response, "/");
-		}
+		HttpUtil.forward(request, response, "/");
 	}
 }

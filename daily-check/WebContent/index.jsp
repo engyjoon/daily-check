@@ -35,7 +35,7 @@
 				<div class="title"><img src="image/title_v1.png" style="width:450px;height:auto;"></div>
 				<div class="input">
 					<form action="member.do" method="post" autocomplete="off">
-						<input type="hidden" name="action" value="checkUser">
+						<input type="hidden" name="action" value="login">
 						<div class="form-group">
 							<label for="id">아이디</label>
 							<input type="text" class="form-control" id="id" name="id">

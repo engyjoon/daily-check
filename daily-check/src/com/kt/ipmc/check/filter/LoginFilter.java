@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kt.ipmc.check.service.MemberService;
+
 public class LoginFilter implements Filter {
 
 	@Override
@@ -27,17 +29,19 @@ public class LoginFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		
+		HttpSession session = req.getSession();
+		
 		String path = req.getServletPath();
 		System.out.println("LoginFilter.doFilter - path : " + path);
-
-		HttpSession session = req.getSession();
-		if (session.isNew() || session.getAttribute("userid") == null) {
-			System.out.println("LoginFilter.doFilter - index.jsp");
-			res.sendRedirect(req.getContextPath()+"/index.jsp");
+		
+		if (path.equals("/first.do") || path.equals("/member.do")) {
+			chain.doFilter(request, response);
+		} else if (session.isNew() || session.getAttribute("userid") == null) {
+			System.out.println("LoginFilter.doFilter - redirect : /");
+			res.sendRedirect(req.getContextPath()+"/");
 		} else {
 			chain.doFilter(request, response);
 		}
-		
 	}
 	
 	@Override
