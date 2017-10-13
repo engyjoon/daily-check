@@ -32,16 +32,17 @@
 	<div class="layer">
 		<div class="layer_inner">
 			<div class="content">				
-				<div class="title"><img src="images/title_v1.png" style="width:450px;height:auto;"></div>
+				<div class="title"><img src="image/title_v1.png" style="width:450px;height:auto;"></div>
 				<div class="input">
-					<form>
+					<form action="member.do" method="post">
+						<input type="hidden" name="action" value="checkUser">
 						<div class="form-group">
 							<label for="id">아이디</label>
-							<input type="text" class="form-control" id="id">
+							<input type="text" class="form-control" id="id" name="id">
 						</div>
 						<div class="form-group">
 							<label for="passwd">패스워드</label>
-							<input type="text" class="form-control" id="passwd">
+							<input type="password" class="form-control" id="pw" name="pw">
 						</div>
 						<button type="submit" class="btn btn-primary">Login</button>
 					</form>
@@ -50,6 +51,11 @@
 		</div>
 	</div>
 	
+	<script src="js/jquery-3.2.1.min.js"></script>
+	
+	<script>
+		$("#id").focus();
+	</script>
 
 </body>
 </html>
