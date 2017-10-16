@@ -358,6 +358,25 @@
 					</div>
 				</div>
 			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-10" style="padding-bottom:3px;">
+					<span class="title_md">점검결과 및 특이사항</span>
+				</div>
+			</div>
+			<div class="row justify-content-center mb-3 check-result">
+				<div class="col-md-10">
+					<div class="card">
+						<div class="card-body" style="padding-bottom:17px;">
+							<textarea class="form-control" id="comment" name="comment" rows="5"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-10 text-right" style="padding-bottom:20px;">
+					<button type="submit" class="btn btn-primary">점검완료</button>
+				</div>
+			</div>
 		</form>
     </div>
 
