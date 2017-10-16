@@ -38,8 +38,10 @@ public class MemberService {
 
 		if (dao.countAdminUser() == 0) {
 			result = "N";
-		} else {
+		} else if (dao.countAdminUser() == 1) {
 			result = "Y";
+		} else if (dao.countAdminUser() == -1) {
+			result = "E";
 		}
 		
 		System.out.println("MemberService.existAdminUser : " + result);

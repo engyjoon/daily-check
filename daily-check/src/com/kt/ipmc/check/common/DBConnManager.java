@@ -19,7 +19,7 @@ public class DBConnManager {
 			Class.forName("org.postgresql.Driver");
 			conn = DriverManager.getConnection("jdbc:postgresql://192.168.56.201:5432/dailycheck","dailycheck","tjqj1234");
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("DBConnManager.getConnection : " + e);
 		}
 		return conn;
 	}

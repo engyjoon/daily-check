@@ -58,7 +58,8 @@ public class MemberDAO {
 				result = rs.getInt(1);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("MemberDAO.countAdminUser : " + e);
+			result = -1;
 		} finally {
 			manager.close(conn, pstmt, rs);
 		}

@@ -40,6 +40,9 @@ public class IndexFilter implements Filter {
 		if (service.existAdminUser().equals("N")) {
 			System.out.println("IndexFilter.doFilter - redirect : first.do");
 			res.sendRedirect("first.do");
+		} else if (service.existAdminUser().equals("E")) {
+			System.out.println("IndexFilter.doFilter : Error");
+			chain.doFilter(request, response);
 		} else if (session.getAttribute("userid") != null) {
 			System.out.println("IndexFilter.doFilter - redirect : check.do");
 			res.sendRedirect("check.do");
