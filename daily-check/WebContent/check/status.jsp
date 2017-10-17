@@ -368,7 +368,7 @@
 				<div class="col-md-10">
 					<div class="card">
 						<div class="card-body" style="padding-bottom:17px;">
-							<textarea class="form-control" id="comment" name="comment" rows="5"></textarea>
+							<input type="text" class="form-control form-control-sm" id="comment" name="comment">
 						</div>
 					</div>
 				</div>

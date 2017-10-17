@@ -39,17 +39,18 @@ public class CheckController implements Controller {
 		chkHist.setChkDate(chkDate);
 		chkHist.setChkSvFsList(this.getChkSvFsList(request));
 		
-		if (action.equals("check")) {
+		if (action == null || action.equals("check")) {
 			if (service.countTodayChkHist() == 0) {
 				HttpUtil.forward(request, response, "/check/status.jsp");
 			} else {
-				HttpUtil.forward(request, response, "/check/list.jsp");
+				HttpUtil.forward(request, response, "/check.do?action=list");
 			}
 		} else if (action.equals("list")) {
+			request.setAttribute("list", service.selectChkHist());
 			HttpUtil.forward(request, response, "/check/list.jsp");
 		} else if (action.equals("insertCheck")) {
 			service.insertChkHist(chkHist);
-			HttpUtil.forward(request, response, "/check/status.jsp");
+			HttpUtil.forward(request, response, "/check/list.jsp");
 		} 
 	}
 	

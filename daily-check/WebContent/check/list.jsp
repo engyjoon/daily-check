@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -19,7 +21,6 @@
     
     <style>
     		th {text-align:center;}
-    		td {text-align:center;}
     </style>
 </head>
 <body>
@@ -30,10 +31,20 @@
 			<table class="table table-bordered table-sm">
 				<thead class="thead-default">
 					<tr>
-						<th>점검일자</th>
-						<th>test</th>
+						<th style="width:150px;">점검일</th>
+						<th style="width:150px;">점검자</th>
+						<th>점검결과</th>
 					</tr>
 				</thead>
+				<tbody>
+					<c:forEach var="chkList" items="${list}">
+					<tr>
+						<td style="text-align:center;"><fmt:formatDate value="${chkList.chkDate}" pattern="yyyy-MM-dd"/></td>
+						<td style="text-align:center;">${chkList.chkUserId }</td>
+						<td style="padding-left:10px;">${chkList.chkComment }</td>
+					</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 		</div>
 	</div>

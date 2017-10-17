@@ -1,5 +1,7 @@
 package com.kt.ipmc.check.service;
 
+import java.util.ArrayList;
+
 import com.kt.ipmc.check.dao.ChkHistDAO;
 import com.kt.ipmc.check.dao.ChkSvFsDAO;
 import com.kt.ipmc.check.domain.ChkHistVO;
@@ -31,5 +33,9 @@ public class ChkHistService {
 	
 	public int countTodayChkHist() {
 		return chkHistDao.countTodayChkHist();
+	}
+	
+	public ArrayList<ChkHistVO> selectChkHist() {
+		return chkHistDao.selectChkHist();
 	}
 }
