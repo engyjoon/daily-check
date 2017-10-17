@@ -31,17 +31,23 @@
 			<table class="table table-bordered table-sm">
 				<thead class="thead-default">
 					<tr>
-						<th style="width:150px;">점검일</th>
-						<th style="width:150px;">점검자</th>
-						<th>점검결과</th>
+						<th style="width:130px;">점검일</th>
+						<th style="width:100px;">점검자</th>
+						<th>점검결과 및 특이사항</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="chkList" items="${list}">
 					<tr>
-						<td style="text-align:center;"><fmt:formatDate value="${chkList.chkDate}" pattern="yyyy-MM-dd"/></td>
-						<td style="text-align:center;">${chkList.chkUserId }</td>
-						<td style="padding-left:10px;">${chkList.chkComment }</td>
+						<td style="text-align:center;">
+							<a href="check.do?action=read&histno=${chkList.chkHistNo}"><fmt:formatDate value="${chkList.chkDate}" pattern="yyyy-MM-dd"/></a>
+						</td>
+						<td style="text-align:center;">
+							<a href="check.do?action=read&histno=${chkList.chkHistNo}"">${chkList.chkUserName }</a>
+						</td>
+						<td style="padding-left:10px;">
+							<a href="check.do?action=read&histno=${chkList.chkHistNo}"">${chkList.chkComment }</a>
+						</td>
 					</tr>
 					</c:forEach>
 				</tbody>

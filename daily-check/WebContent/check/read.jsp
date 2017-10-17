@@ -25,10 +25,21 @@
   </head>
 
   <body>
-
+  	<c:forEach var="chkSvFs" items="${chkHist.chkSvFsList}">
+  		<c:if test="${chkSvFs.systemId == '1'}"><c:set var="fs_sys1" value="${chkSvFs.chkResult}"/></c:if>
+  		<c:if test="${chkSvFs.systemId == '2'}"><c:set var="fs_sys2" value="${chkSvFs.chkResult}"/></c:if>
+  		<c:if test="${chkSvFs.systemId == '3'}"><c:set var="fs_sys3" value="${chkSvFs.chkResult}"/></c:if>
+  		<c:if test="${chkSvFs.systemId == '4'}"><c:set var="fs_sys4" value="${chkSvFs.chkResult}"/></c:if>
+  		<c:if test="${chkSvFs.systemId == '5'}"><c:set var="fs_sys5" value="${chkSvFs.chkResult}"/></c:if>
+  		<c:if test="${chkSvFs.systemId == '6'}"><c:set var="fs_sys6" value="${chkSvFs.chkResult}"/></c:if>
+  		<c:if test="${chkSvFs.systemId == '7'}"><c:set var="fs_sys7" value="${chkSvFs.chkResult}"/></c:if>
+  		<c:if test="${chkSvFs.systemId == '8'}"><c:set var="fs_sys8" value="${chkSvFs.chkResult}"/></c:if>
+  	</c:forEach>
+  
 	<%@ include file="../include/nav.jsp" %>
 
     <div class="container">
+    		
     		<form action="check.do" method="post">
     			<input type="hidden" name="action" value="insertCheck">
 	    		<div class="row justify-content-center">
@@ -53,28 +64,28 @@
 									<tr>
 										<td>System1</td>
 										<td>
-											<input type="text" class="form-control form-control-sm" id="fs_sys1" name="fs_sys1">
+											<input type="text" class="form-control form-control-sm" id="fs_sys1" name="fs_sys1" value="${fs_sys1}">
 										</td>
 										<td>System2</td>
-										<td><input type="text" class="form-control form-control-sm" id="fs_sys2" name="fs_sys2"></td>
+										<td><input type="text" class="form-control form-control-sm" id="fs_sys2" name="fs_sys2" value="${fs_sys2}"></td>
 									</tr>
 									<tr>
 										<td>System3</td>
-										<td><input type="text" class="form-control form-control-sm" id="fs_sys3" name="fs_sys3"></td>
+										<td><input type="text" class="form-control form-control-sm" id="fs_sys3" name="fs_sys3" value="${fs_sys3}"></td>
 										<td>System4</td>
-										<td><input type="text" class="form-control form-control-sm" id="fs_sys4" name="fs_sys4"></td>
+										<td><input type="text" class="form-control form-control-sm" id="fs_sys4" name="fs_sys4" value="${fs_sys4}"></td>
 									</tr>
 									<tr>
 										<td>System5</td>
-										<td><input type="text" class="form-control form-control-sm" id="fs_sys5" name="fs_sys5"></td>
+										<td><input type="text" class="form-control form-control-sm" id="fs_sys5" name="fs_sys5" value="${fs_sys5}"></td>
 										<td>System6</td>
-										<td><input type="text" class="form-control form-control-sm" id="fs_sys6" name="fs_sys6"></td>
+										<td><input type="text" class="form-control form-control-sm" id="fs_sys6" name="fs_sys6" value="${fs_sys6}"></td>
 									</tr>
 									<tr>
 										<td>System7</td>
-										<td><input type="text" class="form-control form-control-sm" id="fs_sys7" name="fs_sys7"></td>
+										<td><input type="text" class="form-control form-control-sm" id="fs_sys7" name="fs_sys7" value="${fs_sys7}"></td>
 										<td>System8</td>
-										<td><input type="text" class="form-control form-control-sm" id="fs_sys8" name="fs_sys8"></td>
+										<td><input type="text" class="form-control form-control-sm" id="fs_sys8" name="fs_sys8" value="${fs_sys8}"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -368,17 +379,19 @@
 				<div class="col-md-10">
 					<div class="card">
 						<div class="card-body" style="padding-bottom:17px;">
-							<input type="text" class="form-control form-control-sm" id="comment" name="comment">
+							<input type="text" class="form-control form-control-sm" id="comment" name="comment" value="${chkHist.chkComment }">
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-md-10 text-right" style="padding-bottom:20px;">
-					<button type="submit" class="btn btn-primary">입력하기</button>
+					<button type="submit" class="btn btn-primary">수정하기</button>
+					<button type="button" class="btn btn-outline-info" id="golist">목록으로</button>
 				</div>
 			</div>
 		</form>
+		
     </div>
 
 
@@ -391,5 +404,11 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
+    
+    <script>
+    		$("#golist").click(function() {
+    			$(location).attr('href','check.do');
+    		});
+    </script>
   </body>
 </html>

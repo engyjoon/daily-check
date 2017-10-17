@@ -66,20 +66,21 @@ public class ChkHistDAO {
 		return result;
 	}
 	
-	public ArrayList<ChkHistVO> selectChkHist() {
-		System.out.println("ChkHistDAO.selectHist - Start");
+	public ArrayList<ChkHistVO> selectChkHisList() {
 		ArrayList<ChkHistVO> list = new ArrayList<ChkHistVO>();
 		ChkHistVO chkHist = null;
 		
 		try {
 			conn = manager.getConnection();
-			pstmt = conn.prepareStatement("select chk_hist_no, chk_user_id, chk_service_id, chk_comment, chk_date from tb_chk_hist");
+			pstmt = conn.prepareStatement("select t1.chk_hist_no, t1.chk_user_id, t2.user_name, t1.chk_service_id, t1.chk_comment, t1.chk_date " +
+			                              "from tb_chk_hist t1 inner join tb_member t2 on t1.chk_user_id = t2.user_id");
 			
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				chkHist = new ChkHistVO();
 				chkHist.setChkHistNo(rs.getInt("CHK_HIST_NO"));
 				chkHist.setChkUserId(rs.getString("CHK_USER_ID"));
+				chkHist.setChkUserName(rs.getString("USER_NAME"));
 				chkHist.setChkServiceId(rs.getString("CHK_SERVICE_ID"));
 				chkHist.setChkComment(rs.getString("CHK_COMMENT"));
 				chkHist.setChkDate(rs.getTimestamp("CHK_DATE"));
@@ -93,5 +94,31 @@ public class ChkHistDAO {
 		}
 		
 		return list;
+	}
+	
+	public ChkHistVO selectChkHist(int chkHistNo) {
+		ChkHistVO chkHist = null;
+		
+		try {
+			conn = manager.getConnection();
+			pstmt = conn.prepareStatement("select chk_hist_no, chk_user_id, chk_service_id, chk_comment, chk_date from tb_chk_hist where chk_hist_no = ?");
+			pstmt.setInt(1, chkHistNo);
+			
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				chkHist = new ChkHistVO();
+				chkHist.setChkHistNo(rs.getInt("CHK_HIST_NO"));
+				chkHist.setChkUserId(rs.getString("CHK_USER_ID"));
+				chkHist.setChkServiceId(rs.getString("CHK_SERVICE_ID"));
+				chkHist.setChkComment(rs.getString("CHK_COMMENT"));
+				chkHist.setChkDate(rs.getTimestamp("CHK_DATE"));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			manager.close(conn, pstmt, rs);
+		}
+		
+		return chkHist;
 	}
 }

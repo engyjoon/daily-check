@@ -7,6 +7,7 @@ public class ChkHistVO {
 
 	private int chkHistNo;
 	private String chkUserId;
+	private String chkUserName;
 	private String chkServiceId;
 	private String chkComment;
 	private Timestamp chkDate;
@@ -23,6 +24,12 @@ public class ChkHistVO {
 	}
 	public void setChkUserId(String chkUserId) {
 		this.chkUserId = chkUserId;
+	}
+	public String getChkUserName() {
+		return chkUserName;
+	}
+	public void setChkUserName(String chkUserName) {
+		this.chkUserName = chkUserName;
 	}
 	public String getChkServiceId() {
 		return chkServiceId;

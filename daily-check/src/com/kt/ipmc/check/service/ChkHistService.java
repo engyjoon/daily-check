@@ -35,7 +35,16 @@ public class ChkHistService {
 		return chkHistDao.countTodayChkHist();
 	}
 	
-	public ArrayList<ChkHistVO> selectChkHist() {
-		return chkHistDao.selectChkHist();
+	public ArrayList<ChkHistVO> selectChkHistList() {
+		return chkHistDao.selectChkHisList();
+	}
+	
+	public ChkHistVO selectChkHist(int chkHistNo) {
+		ChkHistVO chkHist = new ChkHistVO();
+		
+		chkHist = chkHistDao.selectChkHist(chkHistNo);
+		chkHist.setChkSvFsList(chkSvFsDao.selectChkSvFsList(chkHistNo));
+		
+		return chkHist;
 	}
 }

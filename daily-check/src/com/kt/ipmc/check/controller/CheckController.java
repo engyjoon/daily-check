@@ -27,6 +27,11 @@ public class CheckController implements Controller {
 		
 		HttpSession session = request.getSession();
 		
+		int chkHistNo = 0;
+		
+		if (request.getParameter("histno") != null)
+			chkHistNo = Integer.parseInt(request.getParameter("histno"));
+		
 		String chkUserId = (String) session.getAttribute("userid");
 		String chkServiceId = (String) session.getAttribute("serviceid");
 		String chkComment = request.getParameter("comment");
@@ -46,12 +51,16 @@ public class CheckController implements Controller {
 				HttpUtil.forward(request, response, "/check.do?action=list");
 			}
 		} else if (action.equals("list")) {
-			request.setAttribute("list", service.selectChkHist());
+			request.setAttribute("list", service.selectChkHistList());
 			HttpUtil.forward(request, response, "/check/list.jsp");
 		} else if (action.equals("insertCheck")) {
 			service.insertChkHist(chkHist);
+			request.setAttribute("list", service.selectChkHistList());
 			HttpUtil.forward(request, response, "/check/list.jsp");
-		} 
+		} else if (action.equals("read")) {
+			request.setAttribute("chkHist", service.selectChkHist(chkHistNo));
+			HttpUtil.forward(request, response, "/check/read.jsp");
+		}
 	}
 	
 	private ArrayList<ChkSvFsVO> getChkSvFsList(HttpServletRequest request) {
