@@ -10,7 +10,7 @@ public class ChkHistVO {
 	private String chkServiceId;
 	private String chkComment;
 	private Timestamp chkDate;
-	private ArrayList<ChkSvFsVO> chkSvFsVOList;
+	private ArrayList<ChkSvFsVO> chkSvFsList;
 	
 	public int getChkHistNo() {
 		return chkHistNo;
@@ -42,11 +42,11 @@ public class ChkHistVO {
 	public void setChkDate(Timestamp chkDate) {
 		this.chkDate = chkDate;
 	}
-	public ArrayList<ChkSvFsVO> getChkSvFsVOList() {
-		return chkSvFsVOList;
+	public ArrayList<ChkSvFsVO> getChkSvFsList() {
+		return chkSvFsList;
 	}
-	public void setChkSvFsVOList(ArrayList<ChkSvFsVO> chkSvFsVOList) {
-		this.chkSvFsVOList = chkSvFsVOList;
+	public void setChkSvFsList(ArrayList<ChkSvFsVO> chkSvFsList) {
+		this.chkSvFsList = chkSvFsList;
 	}
 	
 }

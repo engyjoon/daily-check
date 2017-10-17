@@ -44,4 +44,24 @@ public class ChkHistDAO {
 		
 		return result;
 	}
+	
+	public int countTodayChkHist() {
+		int result = 0;
+		
+		try {
+			conn = manager.getConnection();
+			pstmt = conn.prepareStatement("select count(*) cnt from tb_chk_hist where date_trunc('day', chk_date) = current_date");
+			
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			manager.close(conn, pstmt, rs);
+		}
+		
+		return result;
+	}
 }

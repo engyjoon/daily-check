@@ -3,6 +3,8 @@ create table tb_system (
 	system_name varchar(50)
 );
 
+alter table tb_system add primary key (system_id);
+
 insert into tb_system values('1', 'system1');
 insert into tb_system values('2', 'system2');
 insert into tb_system values('3', 'system3');

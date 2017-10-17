@@ -37,16 +37,23 @@ public class CheckController implements Controller {
 		chkHist.setChkServiceId(chkServiceId);
 		chkHist.setChkComment(chkComment);
 		chkHist.setChkDate(chkDate);
-		chkHist.setChkSvFsVOList(this.getChkSvFsVOList(request));
+		chkHist.setChkSvFsList(this.getChkSvFsList(request));
 		
-		if (action == null) {
-			HttpUtil.forward(request, response, "/check/status.jsp");
+		if (action.equals("check")) {
+			if (service.countTodayChkHist() == 0) {
+				HttpUtil.forward(request, response, "/check/status.jsp");
+			} else {
+				HttpUtil.forward(request, response, "/check/list.jsp");
+			}
+		} else if (action.equals("list")) {
+			HttpUtil.forward(request, response, "/check/list.jsp");
 		} else if (action.equals("insertCheck")) {
 			service.insertChkHist(chkHist);
+			HttpUtil.forward(request, response, "/check/status.jsp");
 		} 
 	}
 	
-	private ArrayList<ChkSvFsVO> getChkSvFsVOList(HttpServletRequest request) {
+	private ArrayList<ChkSvFsVO> getChkSvFsList(HttpServletRequest request) {
 		ArrayList<ChkSvFsVO> list = new ArrayList<ChkSvFsVO>();
 		ChkSvFsVO chkSvFs = null;
 		
@@ -55,30 +62,37 @@ public class CheckController implements Controller {
 		chkSvFs.setChkResult(request.getParameter("fs_sys1"));
 		list.add(chkSvFs);
 		
+		chkSvFs = new ChkSvFsVO();
 		chkSvFs.setSystemId("2");
 		chkSvFs.setChkResult(request.getParameter("fs_sys2"));
 		list.add(chkSvFs);
 		
+		chkSvFs = new ChkSvFsVO();
 		chkSvFs.setSystemId("3");
 		chkSvFs.setChkResult(request.getParameter("fs_sys3"));
 		list.add(chkSvFs);
 		
+		chkSvFs = new ChkSvFsVO();
 		chkSvFs.setSystemId("4");
 		chkSvFs.setChkResult(request.getParameter("fs_sys4"));
 		list.add(chkSvFs);
 		
+		chkSvFs = new ChkSvFsVO();
 		chkSvFs.setSystemId("5");
 		chkSvFs.setChkResult(request.getParameter("fs_sys5"));
 		list.add(chkSvFs);
 		
+		chkSvFs = new ChkSvFsVO();
 		chkSvFs.setSystemId("6");
 		chkSvFs.setChkResult(request.getParameter("fs_sys6"));
 		list.add(chkSvFs);
 		
+		chkSvFs = new ChkSvFsVO();
 		chkSvFs.setSystemId("7");
 		chkSvFs.setChkResult(request.getParameter("fs_sys7"));
 		list.add(chkSvFs);
 		
+		chkSvFs = new ChkSvFsVO();
 		chkSvFs.setSystemId("8");
 		chkSvFs.setChkResult(request.getParameter("fs_sys8"));
 		list.add(chkSvFs);

@@ -24,16 +24,16 @@ public class DBConnManager {
 		return conn;
 	}
 	
-	public void close(Connection conn, PreparedStatement psmt, ResultSet rs) {
+	public void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
 		if (rs != null) {
 			try {rs.close();	} catch (Exception e) {e.printStackTrace();}
 		}
-		close(conn,psmt);
+		close(conn,pstmt);
 	}
 	
-	public void close(Connection conn, PreparedStatement psmt) {
-		if (psmt != null) {
-			try {psmt.close();} catch (Exception e) {e.printStackTrace();}
+	public void close(Connection conn, PreparedStatement pstmt) {
+		if (pstmt != null) {
+			try {pstmt.close();} catch (Exception e) {e.printStackTrace();}
 		}
 		if (conn != null) {
 			try {conn.close();} catch (Exception e) {e.printStackTrace();}

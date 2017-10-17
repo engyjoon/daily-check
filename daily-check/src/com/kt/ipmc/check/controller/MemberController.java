@@ -43,7 +43,7 @@ public class MemberController implements Controller {
 				session = request.getSession();
 				session.setAttribute("userid", member.getUserId());
 				session.setAttribute("serviceid", "1");
-				response.sendRedirect("check.do");
+				response.sendRedirect("check.do?action=check");
 			}
 		} else if (action.equals("logout")) {
 			session = request.getSession();
