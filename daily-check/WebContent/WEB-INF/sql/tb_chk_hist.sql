@@ -5,3 +5,5 @@ create table tb_chk_hist (
 	chk_comment varchar(200),
 	chk_date timestamp with time zone
 );
+
+alter table tb_chk_hist add primary key (chk_hist_no);

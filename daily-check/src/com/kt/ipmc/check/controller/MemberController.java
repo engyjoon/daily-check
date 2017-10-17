@@ -42,6 +42,7 @@ public class MemberController implements Controller {
 			} else if (service.checkLogin(member).equals("MATCH_OK")) {
 				session = request.getSession();
 				session.setAttribute("userid", member.getUserId());
+				session.setAttribute("serviceid", "1");
 				response.sendRedirect("check.do");
 			}
 		} else if (action.equals("logout")) {

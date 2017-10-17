@@ -29,7 +29,8 @@
 	<%@ include file="../include/nav.jsp" %>
 
     <div class="container">
-    		<form>
+    		<form action="check.do" method="post">
+    			<input type="hidden" name="action" value="insertCheck">
 	    		<div class="row justify-content-center">
 				<div class="col-md-10" style="padding-bottom:3px;">
 					<span class="title_md">파일시스템</span>
